@@ -1,0 +1,4 @@
+# by F.C.
+# Exports portage and binary packages on the local network (read only).
+
+#/var/cache/binpkgs    192.168.1.0/24(ro,no_subtree_check,root_squash)

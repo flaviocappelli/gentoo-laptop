@@ -1,0 +1,224 @@
+# Copyright 1999-2020 Gentoo Authors
+# Distributed under the terms of the GNU General Public License v2
+#
+# To populate all changes in this file you need to regenerate your
+# grub configuration file afterwards:
+#     'grub-mkconfig -o /boot/grub/grub.cfg'
+#
+# See the grub info page for documentation on possible variables and
+# their associated values.
+
+GRUB_DISTRIBUTOR="Gentoo"
+
+# Default menu entry
+#GRUB_DEFAULT=0
+
+# Boot the default entry this many seconds after the menu is displayed
+#GRUB_TIMEOUT=5
+#GRUB_TIMEOUT_STYLE=menu
+
+# Append parameters to the linux kernel command line
+#GRUB_CMDLINE_LINUX=""
+#
+# Examples:
+#
+# Boot with network interface renaming disabled
+# GRUB_CMDLINE_LINUX="net.ifnames=0"
+#
+# Boot with systemd instead of sysvinit (openrc)
+# GRUB_CMDLINE_LINUX="init=/usr/lib/systemd/systemd"
+
+# Append parameters to the linux kernel command line for non-recovery entries
+#GRUB_CMDLINE_LINUX_DEFAULT=""
+
+# Uncomment to disable graphical terminal (grub-pc only)
+#GRUB_TERMINAL=console
+
+# Resolution used on graphical terminal.
+# The list of valid modes may be obtained using the 'vbeinfo' (PC BIOS) or
+# 'videoinfo' (EFI) command from a GRUB boot prompt.
+#GRUB_GFXMODE=640x480
+
+# Set to 'text' to force the Linux kernel to boot in normal text
+# mode, 'keep' to preserve the graphics mode set using
+# 'GRUB_GFXMODE', 'WIDTHxHEIGHT'['xDEPTH'] to set a particular
+# graphics mode, or a sequence of these separated by commas or
+# semicolons to try several modes in sequence.
+#GRUB_GFXPAYLOAD_LINUX=
+
+# Path to theme spec txt file.
+# The starfield is by default provided with use truetype.
+# NOTE: when enabling custom theme, ensure you have required font/etc.
+#GRUB_THEME="/boot/grub/themes/starfield/theme.txt"
+
+# Background image used on graphical terminal.
+# Can be in various bitmap formats.
+#GRUB_BACKGROUND="/boot/grub/mybackground.png"
+
+# Uncomment if you don't want GRUB to pass "root=UUID=xxx" parameter to kernel
+#GRUB_DISABLE_LINUX_UUID=true
+
+# Comment if you don't want GRUB to pass "root=PARTUUID=xxx" parameter to kernel
+GRUB_DISABLE_LINUX_PARTUUID=false
+
+# Uncomment to disable generation of recovery mode menu entries
+#GRUB_DISABLE_RECOVERY=true
+
+# Uncomment to disable generation of the submenu and put all choices on
+# the top-level menu.
+# Besides the visual affect of no sub menu, this makes navigation of the
+# menu easier for a user who can't see the screen.
+#GRUB_DISABLE_SUBMENU=y
+
+# Uncomment to play a tone when the main menu is displayed.
+# This is useful, for example, to allow users who can't see the screen
+# to know when they can make a choice on the menu.
+#GRUB_INIT_TUNE="60 800 1"
+
+
+# ----------------------------------------------------------------------
+
+# by F.C.
+# See https://www.gnu.org/software/grub/manual/grub/html_node/index.html
+
+# Default menu entry # or 'saved' (see also next option).
+#GRUB_DEFAULT=0
+GRUB_DEFAULT=saved
+
+# To enable the "save default function", uncomment the following line
+# and set GRUB_DEFAULT to saved. DO NOT REMOVE "" OR IT WILL NOT WORK.
+GRUB_SAVEDEFAULT="true"
+
+# Boot the default entry this many seconds after the menu is displayed.
+GRUB_HIDDEN_TIMEOUT=0
+GRUB_HIDDEN_TIMEOUT_QUIET=true
+GRUB_TIMEOUT_STYLE=menu
+GRUB_TIMEOUT=5
+
+# Kernel options for Gentoo:
+#
+# * On Gentoo, 'systemd' already uses the unified (i.e. modern, also named v2) cgroup
+#   interface (if USE flag 'cgroup-hybrid' is not set): we don't need to force it here.
+#
+# * There are eight kernel log levels; all kernel messages < 'loglevel' will be printed
+#   to the console (see the manpage for the 'dmesg' command). A good level is '3', which
+#   only prints critical conditions or worse situations; higher values pollutes the boot
+#   screen so should be avoided unless required; to view everything set 'loglevel' to 8.
+#
+# * Grub make available two set of options for the Linux kernel:
+#    - GRUB_CMDLINE_LINUX:          options that are always effective
+#    - GRUB_CMDLINE_LINUX_DEFAULT:  options effective ONLY during normal boot
+#                                   (i.e. NOT during the recovery mode).
+#
+# * Default keyboard layout is set:
+#    - here for grub;
+#    - in /etc/vconsole.conf for virtual consoles (not X);
+#    - in /etc/X11/xorg.conf.d/00-keyboard.conf for X (but DEs can override it).
+#
+# CPU FREQUENCY SCALING DRIVER / POWER MANAGEMENT
+#
+# 1. acpi-cpufreq (legacy):
+#    Default for CPUs Intel < Sandy Bridge (inc. older Atom/Celeron) and AMD < Zen2 (Ryzen 1000/2000,
+#    FX, A-series). Fallback if HWP (Intel) or CPPC (AMD) is disabled in BIOS. On modern systems with
+#    default p-state can be forced with "amd_pstate=disable" (AMD) or "intel_pstate=disable" (Intel).
+#
+# 2. amd_pstate:
+#    Modern driver for AMD Zen2+ (Ryzen 3000+, EPYC 7002+). Requires CPPC enabled in BIOS.
+#    - active (EPP): default since Kernel 6.5+, HW manages frequency via hints [amd_pstate=active];
+#    - passive: default kernels 5.17-6.4, software (governors) sends requests to HW [amd_pstate=passive];
+#    - guided: hybrid, kernel sets range (min/max), HW selects frequency [amd_pstate=guided].
+#    USE DEFAULT (EPP) ON MODERN SYSTEMS WITH AMD CPUs, KERNELs > 6.6, POWER-PROFILES-DAEMON.
+#
+# 3. intel_pstate:
+#    Modern driver for Intel Core (Sandy Bridge 2nd Gen+).
+#    - active (HWP): default since Skylake (6th Gen+) / kernel 4.10+, HW-managed (HWP) [intel_pstate=active];
+#    - passive: default for Sandy Bridge to Broadwell (2nd-5th Gen), software-managed [intel_pstate=passive];
+#    - no_hwp: disables HWP on modern CPUs, forcing software-controlled mode [intel_pstate=no_hwp].
+#
+# NOTE: If you prefer TLP over POWER-PROFILE_DAEMON, add "amd_pstate=passive" or "intel_pstate=passive" to
+# GRUB_CMDLINE_LINUX_DEFAULT below (ensure the kernel is configured to use "schedutil" as default governor),
+# then let the TLP service set the best p-state mode, governor and energy policy for both AC and BAT (useful
+# for laptops). Anyway modern desktops/laptops generally work well with the default power-profiles-daemon.
+#
+# INTEL GRAPHICS DRIVER
+#  * To force "xe" driver instead of "i915" use "i915.force_probe=!<id> xe.force_probe=<id>" in
+#    GRUB_CMDLINE_LINUX_DEFAULT; "xe" can be used only from CPU >= Tiger Lake (11th generation);
+#
+# SABRENT ROCKET 4 NVME I/O ERROR ON SOME INTEL MINI-PCs
+#  * On I/O errors add "nvme_core.default_ps_max_latency_us=10000" to GRUB_CMDLINE_LINUX; this
+#   will disable the S4 low power state solving the I/O errors (if not, use 200 to disable both
+#   the S3/S4 states). For other NVMe models and vendors change the above timings accordingly.
+#
+# LENOVO LAPTOP LEGION PRO 5 16ADR10
+#  * If suspend-to-ram (S3) wakes up after 1s, add "gpiolib_acpi.ignore_interrupt=AMDI0030:00@4"
+#    (see https://wiki.archlinux.org/title/Power_management/Wakeup_triggers#Ryzen_7000_Series).
+#    NOTE: This might be due to MT7921 module; TODO - recheck with AX210 module when installed.
+#    NOTE: MT7921 in kernel 6.18.18 causes kernel freezes on tranfer of large files (6/8GB+).
+#  * There's currently a bug in the amdgpu driver that causes a kernel crash (with total freezes):
+#      amdgpu 0000:06:00.0: [drm] *ERROR* flip_done timed out
+#      amdgpu 0000:06:00.0: [drm] *ERROR* [CRTC:80:crtc-0] commit wait timed out
+#    Add "amdgpu.dcdebugmask=0x10" to mitigate (causes more battery drain). Patches discussions:
+#      https://lore.kernel.org/amd-gfx/20260305222131.160914-1-sunpeng.li@amd.com/
+#      https://gitlab.freedesktop.org/drm/amd/-/work_items/2950
+#      https://gitlab.freedesktop.org/drm/amd/-/work_items/3787
+#      https://github.com/ROCm/ROCm/issues/6033
+#      https://www.phoronix.com/news/AMDGPU-DC-Power-Module
+GRUB_CMDLINE_LINUX_DEFAULT="quiet threadirqs preempt=full udev.log_priority=3 loglevel=3 gpiolib_acpi.ignore_interrupt=AMDI0030:00@4 amdgpu.dcdebugmask=0x10"
+GRUB_CMDLINE_LINUX="dolvm vconsole.keymap=it locale=it_IT audit=0 nowatchdog"
+
+# Uncomment to disable submenus in boot menu.
+GRUB_DISABLE_SUBMENU=y
+
+# Preload both GPT and MBR modules so that they are not missed.
+GRUB_PRELOAD_MODULES="part_gpt part_msdos"
+
+# Uncomment to enable booting from LUKS encrypted devices.
+#GRUB_ENABLE_CRYPTODISK=y
+
+# Uncomment to use basic console.
+GRUB_TERMINAL_INPUT=console
+
+# Uncomment to disable graphical terminal.
+#GRUB_TERMINAL_OUTPUT=console
+
+# The resolution used on graphical terminal. Note: you can use only modes
+# which your graphic card supports via VBE (on recent GRUB versions, you
+# can see them in GRUB command line mode with 'videoinfo', NOT 'vbeinfo').
+GRUB_GFXMODE="1920x1200,1920x1080,1600x1200,1400x1050,1280x1024,1280x960,1280x800,1024x768,auto"
+
+# Uncomment to allow the kernel use the same resolution used by grub.
+GRUB_GFXPAYLOAD_LINUX="keep"
+
+# Uncomment if you want GRUB to pass to the Linux kernel the old parameter
+# format "root=/dev/xxx" instead of "root=/dev/disk/by-uuid/xxx".
+#GRUB_DISABLE_LINUX_UUID=true
+
+# Uncomment to disable generation of recovery mode menu entries.
+GRUB_DISABLE_RECOVERY=true
+
+# Uncomment this option to enable os-prober execution in the grub-mkconfig command
+# (as alternative you can disable /etc/grub.d/30_os-prober execute permission).
+#
+# Required to detect Windows on another partition or disk
+# (for security reasons do not enable it unless you really need it).
+GRUB_DISABLE_OS_PROBER=false
+
+# Uncomment and set to the desired menu colors. Used by normal and
+# wallpaper modes only. Entries specified as foreground/background.
+#GRUB_COLOR_NORMAL="white/black"
+#GRUB_COLOR_HIGHLIGHT="green/black"
+
+# Uncomment one of them for the gfx desired, a image background or a gfxtheme.
+#GRUB_BACKGROUND="/usr/share/grub/background.png"
+GRUB_THEME="/boot/grub/themes/lenovo/theme.txt"
+
+# Uncomment to get a beep at GRUB start. Note: the grub menu doesn't
+# appear until the sound is terminated, so do not make it too long.
+#GRUB_INIT_TUNE="480 440 1"
+
+# Uncomment to ensure that the root filesystem is mounted read-only
+# so that 'systemd-fsck' can run the filesystem check automatically.
+# When this option is true, the "fsck" hook in /etc/mkinitcpio.conf
+# (on Manjaro) must be removed, otherwise a warning message will be
+# displayed at boot and the systemd-fsck-root service will fail.
+GRUB_ROOT_FS_RO=true
