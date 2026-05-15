@@ -71,6 +71,7 @@ dev-debug/strace
 dev-debug/valgrind
 dev-games/godot
 dev-libs/libisoburn
+dev-python/cupy
 dev-python/pip
 dev-python/uv
 dev-qt/qt-docs
@@ -108,6 +109,7 @@ dev-vcs/subversion
 games-board/gnome-chess
 games-board/gnuchess
 games-engines/uzdoom
+games-fps/xonotic
 gnome-base/dconf-editor
 gnome-extra/gnome-color-manager
 gnome-extra/gnome-firmware
@@ -218,6 +220,7 @@ net-print/splix
 net-vpn/networkmanager-openvpn
 net-vpn/networkmanager-pptp
 net-vpn/networkmanager-vpnc
+net-wireless/iw
 sci-astronomy/stellarium
 sci-calculators/speedcrunch
 sci-electronics/circuitjs1-bin
@@ -233,6 +236,7 @@ sci-mathematics/4ti2
 sci-mathematics/lean
 sci-mathematics/octave
 sci-mathematics/wxmaxima
+sci-misc/llama-cpp
 sci-ml/pytorch
 sys-apps/cpuid
 sys-apps/dmidecode
@@ -287,10 +291,9 @@ sys-kernel/linux-firmware
 sys-libs/ncurses-compat
 sys-power/acpid
 sys-power/cpupower
-sys-power/iasl
 sys-process/btop
 sys-process/htop
-sys-process/iotop
+sys-process/iotop-c
 sys-process/lsof
 sys-process/nvtop
 sys-process/parallel
