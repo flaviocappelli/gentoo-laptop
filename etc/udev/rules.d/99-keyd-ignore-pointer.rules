@@ -1,0 +1,16 @@
+# by F.C.
+#
+# KDE/Plasma sees the "keyd virtual pointer" as an external mouse, disabling the laptop's
+# touchpad at login, when option "Disable touchpad when a mouse is connected" is enabled
+# (see /etc/libinput/local-overrides.quirks). To avoid that, we have two possibilities:
+#
+# - disabling "Disable touchpad when a mouse is connected" in KDE settings;
+# - disabling completely the "keyd virtual pointer" with a udev rule.
+#
+# Because I use keyd only to remap the Copilot key to right CTRL, I prefer the latter.
+#
+# NOTE: this rule completely strips input capabilities from the keyd virtual pointer;
+# as a result, any keyd remappings involving mouse movements or clicks will NOT work.
+# Any real external USB/Bluetooth mice will continue to be detected normally by KDE.
+
+SUBSYSTEM=="input", ATTRS{name}=="keyd virtual pointer", ENV{ID_INPUT}="", ENV{ID_INPUT_MOUSE}="", ENV{ID_INPUT_TOUCHPAD}=""

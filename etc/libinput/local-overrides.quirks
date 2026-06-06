@@ -1,0 +1,24 @@
+# by F.C.
+#
+# Required by app-misc/keyd (from guru overlay).
+#
+# By default, keyd spawns a virtual keyboard and a virtual pointer;
+# this file forces libinput to identify the "keyd virtual keyboard"
+# as internal (to ensure proper "Disable-While-Typing" behavior on
+# the laptop's touchpad). Unfortunately, an analogous rule for the
+# pointer does not exist in libinput, so the "keyd virtual pointer"
+# cannot be marked as internal here; it must be handled via a udev
+# rule instead (see /etc/udev/rules.d/99-keyd-ignore-pointer.rules).
+#
+# References:
+# - FAQ in https://github.com/rvaiya/keyd
+# - https://wayland.freedesktop.org/libinput/doc/latest/device-quirks.html
+# - /etc/keyd/default.conf
+#
+# To validate this file simply run "libinput quirks validate"
+# (note that it display something only if the parsing fails).
+
+[keyd Virtual Keyboard]
+MatchUdevType=keyboard
+MatchName=keyd virtual keyboard
+AttrKeyboardIntegration=internal

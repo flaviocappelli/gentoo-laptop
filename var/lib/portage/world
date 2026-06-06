@@ -37,6 +37,7 @@ app-misc/ddcui
 app-misc/evtest
 app-misc/fastfetch
 app-misc/jq
+app-misc/keyd
 app-misc/resolve-march-native
 app-misc/screen
 app-misc/tmux
