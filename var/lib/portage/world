@@ -75,6 +75,8 @@ dev-games/godot
 dev-libs/libisoburn
 dev-python/cupy
 dev-python/pip
+dev-python/python-lsp-black
+dev-python/python-lsp-server
 dev-python/uv
 dev-qt/qt-docs
 dev-qt/qt3d
