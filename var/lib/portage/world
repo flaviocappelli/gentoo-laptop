@@ -242,6 +242,7 @@ sci-mathematics/octave
 sci-mathematics/wxmaxima
 sci-misc/llama-cpp
 sci-ml/pytorch
+sci-ml/torchvision
 sys-apps/cpuid
 sys-apps/dmidecode
 sys-apps/dtc
