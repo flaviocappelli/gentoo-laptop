@@ -18,7 +18,7 @@ x11-drivers/nvidia-drivers      powerd
 
 acct-user/ollama                cuda                # Required by sci-ml/ollama[cuda].
 dev-python/cupy                 cuda                # Enable NVidia CUDA support.
-sci-misc/llama-cpp              cuda -vulkan        # Enable NVidia CUDA support, disable Vulkan (CUDA is faster)
+sci-misc/llama-cpp              cuda -vulkan        # Enable NVidia CUDA support, disable Vulkan (CUDA is faster on RTX5070).
 sci-ml/caffe2                   cuda                # Enable NVidia CUDA support.
-sci-ml/ollama                   cuda -vulkan        # Enable NVidia CUDA support, disable Vulkan (CUDA is faster)
+sci-ml/ollama                   cuda -vulkan        # Enable NVidia CUDA support, disable Vulkan (CUDA is faster on RTX5070).
 sci-ml/torchvision              cuda                # Enable NVidia CUDA support (see /etc/portage/package.env/00-usegcc14.env).
