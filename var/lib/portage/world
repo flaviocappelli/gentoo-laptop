@@ -34,6 +34,7 @@ app-eselect/eselect-python
 app-eselect/eselect-repository
 app-forensics/rkhunter
 app-misc/ddcui
+app-misc/ellama
 app-misc/evtest
 app-misc/fastfetch
 app-misc/jq
@@ -241,6 +242,8 @@ sci-mathematics/lean
 sci-mathematics/octave
 sci-mathematics/wxmaxima
 sci-misc/llama-cpp
+sci-misc/stable-diffusion-cpp
+sci-ml/ollama
 sci-ml/torchvision
 sys-apps/cpuid
 sys-apps/dmidecode

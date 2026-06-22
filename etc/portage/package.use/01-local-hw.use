@@ -14,11 +14,26 @@ dev-util/hip                    -video_cards_nvidia
 x11-drivers/nvidia-drivers      powerd
 
 
-# ------------ Settings only for my laptop (Lenovo Legion Pro 5 16ADR10) ------------
+# ================================================================================
+#  AI BACKEND SETTINGS FOR MY LAPTOP (CPU Ryzen 8940HX + GPU RTX 5070 Mobile)
+# ================================================================================
+
+# --------------------------------------------------------------------------------
+#   Use CUDA for ALL packages (faster than Vulkan)
+# --------------------------------------------------------------------------------
+#   Large AI models can easily exceed the physical 8 GB of VRAM on the RTX 5070.
+#   CUDA is mandatory on this hardware because its proprietary driver is roughly
+#   3x faster than Vulkan in pure tensor computations. Furthermore, CUDA features
+#   advanced virtual memory management, handling tight memory overhead gracefully
+#   without throwing sudden device allocation crashes. To guarantee absolute
+#   stability with heavy pipelines, text processing and secondary decoding
+#   stages should be partially offloaded to the powerful 16-core Ryzen CPU.
 
 acct-user/ollama                cuda                # Required by sci-ml/ollama[cuda].
-dev-python/cupy                 cuda                # Enable NVidia CUDA support.
-sci-misc/llama-cpp              cuda -vulkan        # Enable NVidia CUDA support, disable Vulkan (CUDA is faster on RTX5070).
-sci-ml/caffe2                   cuda                # Enable NVidia CUDA support.
-sci-ml/ollama                   cuda -vulkan        # Enable NVidia CUDA support, disable Vulkan (CUDA is faster on RTX5070).
-sci-ml/torchvision              cuda                # Enable NVidia CUDA support (see /etc/portage/package.env/00-usegcc14.env).
+sci-misc/llama-cpp              cuda -vulkan
+sci-ml/ollama                   cuda -vulkan
+
+dev-python/cupy                 cuda
+sci-ml/caffe2                   cuda
+sci-misc/stable-diffusion-cpp   cuda -vulkan
+sci-ml/torchvision              cuda                # See /etc/portage/package.env/00-usegcc14.env
