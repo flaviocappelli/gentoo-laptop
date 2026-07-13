@@ -29,11 +29,16 @@ x11-drivers/nvidia-drivers      powerd
 #   stability with heavy pipelines, text processing and secondary decoding
 #   stages should be partially offloaded to the powerful 16-core Ryzen CPU.
 
-acct-user/ollama                cuda                # Required by sci-ml/ollama[cuda].
+# LLAMA.CPP
 sci-misc/llama-cpp              cuda -vulkan
-sci-ml/ollama                   cuda -vulkan
 
+# OLLAMA
+sci-ml/ggml                     cuda -vulkan
+sci-ml/ollama                   cuda
+acct-user/ollama                cuda          # Required by sci-ml/ollama[cuda].
+
+# PYTORCH & C.
 dev-python/cupy                 cuda
-sci-ml/caffe2                   cuda
 sci-misc/stable-diffusion-cpp   cuda -vulkan
-sci-ml/torchvision              cuda                # See /etc/portage/package.env/00-usegcc14.env
+sci-ml/caffe2                   cuda
+sci-ml/torchvision              cuda          # See /etc/portage/package.env/00-usegcc14.env
