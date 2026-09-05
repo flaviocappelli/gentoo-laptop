@@ -34,11 +34,11 @@ sci-misc/llama-cpp              cuda -vulkan
 
 # OLLAMA
 sci-ml/ggml                     cuda -vulkan
-sci-ml/ollama                   cuda
-acct-user/ollama                cuda          # Required by sci-ml/ollama[cuda].
+acct-user/ollama                cuda          # Required to use sci-ml/ggml with CUDA.
 
 # PYTORCH & C.
 dev-python/cupy                 cuda
 sci-misc/stable-diffusion-cpp   cuda -vulkan
-sci-ml/caffe2                   cuda
+sci-ml/caffe2                   cuda          # Pytorch < 2.13 only.
+sci-ml/pytorch                  cuda          # Pytorch 2.13 and above.
 sci-ml/torchvision              cuda          # See /etc/portage/package.env/00-usegcc14.env
