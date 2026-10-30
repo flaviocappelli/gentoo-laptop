@@ -23,8 +23,8 @@ app-crypt/sirikali
 app-crypt/stoken
 app-doc/gimp-help
 app-editors/ghostwriter
+app-editors/okteta
 app-editors/vscode
-app-editors/wxhexeditor
 app-emulation/virt-manager
 app-emulation/virtualbox
 app-emulation/virtualbox-additions
@@ -107,6 +107,7 @@ dev-util/kdstatemachineeditor
 dev-util/meld
 dev-util/pahole
 dev-util/seer
+dev-util/shellcheck-bin
 dev-util/sysprof
 dev-util/vulkan-tools
 dev-vcs/cvs
