@@ -1,0 +1,6 @@
+# by F.C.
+#
+# Ebuilds for OpenCL / CUDA BACKENDS
+
+dev-util/nvidia-cuda-toolkit::gentoo
+dev-libs/cutlass::gentoo

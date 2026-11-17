@@ -15,7 +15,7 @@ x11-drivers/nvidia-drivers      powerd
 
 
 # ================================================================================
-#  AI BACKEND SETTINGS FOR MY LAPTOP (CPU Ryzen 8940HX + GPU RTX 5070 Mobile)
+#  ML BACKEND SETTINGS FOR MY LAPTOP (CPU Ryzen 8940HX + GPU RTX 5070 Mobile)
 # ================================================================================
 
 # --------------------------------------------------------------------------------
@@ -29,16 +29,25 @@ x11-drivers/nvidia-drivers      powerd
 #   stability with heavy pipelines, text processing and secondary decoding
 #   stages should be partially offloaded to the powerful 16-core Ryzen CPU.
 
+# CuPy (NumPy-compatible array library GPU accelerated, from my local repo).
+dev-python/cupy                 cuda
+
+# ComfyUI (AI engine for content creation, from "styff" overlay).
+media-gfx/comfyui               cuda
+dev-python/comfy-aimdo-bin      cuda
+dev-python/comfy-kitchen-bin    cuda
+
+# Pytorch & C (deps of ComfyUI, mainly from "stuff" overlay).
+sci-ml/caffe2                   cuda
+sci-ml/pytorch                  cuda
+sci-ml/torchvision              cuda
+
+# Stable diffusion in C++ (simpler than ComfyUI, from my local repo).
+sci-misc/stable-diffusion-cpp   cuda -vulkan
+
 # LLAMA.CPP
 sci-misc/llama-cpp              cuda -vulkan
 
 # OLLAMA
 sci-ml/ggml                     cuda -vulkan
 acct-user/ollama                cuda          # Required to use sci-ml/ggml with CUDA.
-
-# PYTORCH & C.
-dev-python/cupy                 cuda
-sci-misc/stable-diffusion-cpp   cuda -vulkan
-sci-ml/caffe2                   cuda          # Pytorch < 2.13 only.
-sci-ml/pytorch                  cuda          # Pytorch 2.13 and above.
-sci-ml/torchvision              cuda          # See /etc/portage/package.env/00-usegcc14.env
